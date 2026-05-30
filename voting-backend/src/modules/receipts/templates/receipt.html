@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body {
+      font-family: Inter, Arial, sans-serif;
+      padding: 40px;
+      color: #0f172a;
+      background: #ffffff;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* WATERMARK */
+    .watermark {
+      position: fixed;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.035;
+      width: 320px;
+      z-index: 0;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      height: 42px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .qr {
+      text-align: center;
+      font-size: 10px;
+      color: #64748b;
+    }
+
+    /* STATUS */
+    .status {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .status-success {
+      background: #DCFCE7;
+      color: #166534;
+    }
+
+    .status-failed {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+
+    .status-pending {
+      background: #FEF9C3;
+      color: #854D0E;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-top: 18px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .label {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .muted {
+      color: #64748b;
+    }
+
+    hr {
+      margin: 24px 0;
+      border: none;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    /* TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+
+    th {
+      text-align: left;
+      padding-bottom: 8px;
+      font-size: 12px;
+      color: #64748b;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    td {
+      padding: 12px 0;
+      font-size: 14px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .right {
+      text-align: right;
+    }
+
+    /* TOTALS */
+    .totals {
+      margin-top: 10px;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .totals strong {
+      font-weight: 600;
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- WATERMARK -->
+<img src="{{logo}}" class="watermark" />
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <img src="{{logo}}" class="logo" />
+      <div class="title">Voting Receipt</div>
+    </div>
+
+    <div class="qr">
+      <img src="{{qr}}" width="80" />
+      <div>Scan to verify</div>
+    </div>
+  </div>
+
+  <!-- STATUS -->
+  <div class="status status-{{statusClass}}">
+    {{status}}
+  </div>
+
+  <!-- PAYMENT INFO -->
+  <div class="section">
+    <div><span class="label">Reference:</span> {{reference}}</div>
+    <div><span class="label">Amount:</span> NGN {{amount}}</div>
+    <div><span class="label">Paid At:</span> {{paidAt}}</div>
+  </div>
+
+  <!-- CART -->
+  <div class="section">
+    <div><span class="label">Cart UUID:</span> <span class="muted">{{cartUuid}}</span></div>
+    <div><span class="label">Cart Total:</span> NGN {{cartTotal}}</div>
+  </div>
+
+  <hr/>
+
+  <!-- ITEMS -->
+  <div class="section">
+    <div class="label">Items</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Poll</th>
+          <th>Nominee</th>
+          <th>Votes</th>
+          <th class="right">Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {{items}}
+      </tbody>
+    </table>
+  </div>
+
+  <hr/>
+
+  <!-- TOTALS -->
+  <div class="totals">
+    <div><strong>Items Total:</strong> NGN {{itemsTotal}}</div>
+    <div><strong>Applied Total:</strong> NGN {{appliedTotal}}</div>
+    <div><strong>Skipped Total:</strong> NGN {{skippedTotal}}</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Business Automation Management System.</p>
+        <p>Mide Bash</p>
+  </div>
+
+</div>
+
+</body>
+</html>

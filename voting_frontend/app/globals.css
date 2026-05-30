@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* ============================= */
+/* FORCE LIGHT MODE (GLOBAL) */
+/* ============================= */
+:root {
+  color-scheme: light;
+
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* ============================= */
+/* BASE STYLES */
+/* ============================= */
+html,
+body {
+  height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ============================= */
+/* SMOOTH TEXT RENDERING */
+/* ============================= */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

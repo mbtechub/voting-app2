@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      color: #0f172a;
+      background: #ffffff;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      position: relative;
+    }
+
+    .watermark {
+      position: fixed;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.04;
+      width: 300px;
+      z-index: 0;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      height: 40px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    .status-success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-failed {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .status-pending {
+      background: #fef9c3;
+      color: #854d0e;
+    }
+
+    .section {
+      margin-top: 20px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    hr {
+      margin: 24px 0;
+      border: none;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th {
+      text-align: left;
+      padding-bottom: 8px;
+      font-size: 12px;
+      color: #64748b;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    td {
+      padding: 10px 0;
+      font-size: 14px;
+    }
+
+    .right {
+      text-align: right;
+    }
+
+    .totals {
+      text-align: right;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+
+<body>
+
+<img src="{{logo}}" class="watermark" />
+
+<div class="container">
+
+  <div class="header">
+    <img src="{{logo}}" class="logo" />
+    <div class="title">Voting Receipt</div>
+    <img src="{{qr}}" width="80" />
+  </div>
+
+  <div class="status status-{{statusClass}}">
+    {{status}}
+  </div>
+
+  <div class="section">
+    <b>Reference:</b> {{reference}}<br/>
+    <b>Amount:</b> NGN {{amount}}<br/>
+    <b>Paid At:</b> {{paidAt}}
+  </div>
+
+  <div class="section">
+    <b>Cart UUID:</b> {{cartUuid}}<br/>
+    <b>Cart Total:</b> NGN {{cartTotal}}
+  </div>
+
+  <hr/>
+
+  <div class="section">
+    <b>Vote items</b>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Poll</th>
+          <th>Nominee</th>
+          <th>Votes</th>
+          <th class="right">Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {{items}}
+      </tbody>
+    </table>
+  </div>
+
+  <hr/>
+
+  <div class="totals">
+    <b>Items Total:</b> NGN {{itemsTotal}}<br/>
+    <b>Applied Total:</b> NGN {{appliedTotal}}<br/>
+    <b>Skipped Total:</b> NGN {{skippedTotal}}
+  </div>
+
+  <div class="footer">
+    <p>Business Automation Management System.</p>
+        <p>Mide Bash</p>
+  </div>
+
+</div>
+
+</body>
+</html>
